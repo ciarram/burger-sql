@@ -1,0 +1,27 @@
+{
+  "name": "burger-sql",
+  "version": "1.0.0",
+  "description": "Enter a burger you would like to eat into the form to display it on the screen",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ciarram/burger-sql.git"
+  },
+  "author": "Ciarra Murphy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ciarram/burger-sql/issues"
+  },
+  "homepage": "https://github.com/ciarram/burger-sql#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.10",
+    "mysql": "^2.15.0"
+  }
+}
