@@ -1,15 +1,18 @@
 var express = require('express');
-var exphbs = require('express-handlebars');
-var bodyParser = require('body-parser');
-var mysql = require('mysql');
 var app = express();
 var port = process.env.port || 8080;
+
+var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+var exphbs = require('express-handlebars');
+
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+var mysql = require('mysql');
 
 var connection = mysql.createConnection({
     user: 'root',
@@ -34,9 +37,9 @@ app.get("/", function(req, res){
     });
 });
 
-app.post("/", function( req, res){
-    console.log("You've sent " + req.body.newBurger);
-    connection.query("INSERT INTO burgers (newBurger) VALUES ?", [req.body.newBurger], function(err, results){
+app.post("/", function(req, res){
+    console.log("You've sent " + req.body.name);
+    connection.query("INSERT INTO burgers (name) VALUES (?)", [req.body.name], function(err, results){
         if (err){
             throw err;
         }
