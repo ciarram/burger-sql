@@ -47,6 +47,20 @@ app.post("/", function(req, res){
     })
 });
 
+app.put("/", function(req, res) {
+    connection.query("UPDATE burgers SET name = ? WHERE id = ?", [req.body.name, req.params.id], function(err, result) {
+      if (err) {
+        // If an error occurred, send a generic server faliure
+        return res.status(500).end();
+      } else if (result.changedRows == 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
+
 app.listen(port, function(){
     console.log("http://localhost:" + port);
 });

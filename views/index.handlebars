@@ -22,11 +22,14 @@
             margin-left: 45%;
             padding: 10px;
         }
+        .body{
+            width: 40%;
+        }
 </style>
 <img src="http://clipartsign.com/upload/2016/01/27/hamburger-burger-clipart-free-clipart.png">
 <h3>Eat-Da-Burger</h3>
 <div class="container">
-    <div class="col">
+    <div class="submit-form">
         <form action="/", method="post">
             <div class="form-group">
                 <textarea class="form-control" type = "text" name="name" placeholder="Enter your burger order here!" rows="3"></textarea>
@@ -34,21 +37,31 @@
             <button type="submit" class="btn btn-info" id="submit">Submit</button>
         </form>
     </div>
-    <div class="body">
-        {{#each burgers}}
-            <p>{{this.name}} <button type="button" class="shift">Devour It</button></p>
-        {{/each}}
-     </div>
-     <div class="col">
-         
-     </div>
+    <div class="row">
+        <div class="col">
+        <div class="body">
+            {{#each burgers}}
+                <p id="burger-submission">{{this.name}}</p><button type="button" class="shift">Devour It</button>
+            {{/each}}
+        </div>
+        </div>
+        <div class="col">
+        <div class="newspot">
+        </div>   
+        </div>
+    </div> 
 </div>
 <script type="text/javascript">
-$("#submit").on("click", function(event){
-    $(".body").append('<button class="eat">Devour It</button>')
-         $(".eat").on("submit", function(){
-            console.log("clicked!");
-         });
-})
-    
+$(document).ready(function(){
+    $(".shift").on("click", function(){
+        var click = true;
+        console.log("clicked!");
+        $.post("/").done(function(data){     
+            $("#burger-submission").detach();
+            console.log("I've detached");
+            $("#burger-submission").appendTo(".newspot");
+            $("submit").hide();
+        })
+    });        
+});
 </script>
